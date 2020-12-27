@@ -50,13 +50,8 @@ namespace MultiFKRecExample.Models
                 // Foreign keys ** Replace HasDatabaseName with HasName for older SDK **
                 entity.HasIndex(x => x.PatientID).HasDatabaseName($"FK_{nameof(ImmunizationRecord)}_{nameof(Patient)}");
                 entity.HasIndex(x => x.ImmunizationID).HasDatabaseName($"FK_{nameof(ImmunizationRecord)}_{nameof(Immunization)}");
-                //entity.HasIndex(x => x.ImmunizationID).HasDatabaseName($"FK_{nameof(ImmunizationRecord)}_{nameof(Immunization)}");
-
 
                 entity.HasOne(patientImmunization => patientImmunization.PatientData).WithMany(patient => patient.ImmunizationRecords).HasConstraintName($"FK_{nameof(ImmunizationRecord)}_{nameof(Patient)}");
-                
-                //entity.HasOne(patientImmunization => patientImmunization.ImmunizationDesc).WithOne(immunization => immunization.Immuniza).HasConstraintName($"FK_{nameof(ImmunizationRecord)}_{nameof(Immunization)}");
-
             });
 
         }

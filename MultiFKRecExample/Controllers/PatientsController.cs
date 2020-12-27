@@ -87,12 +87,12 @@ namespace MultiFKRecExample.Controllers
             using (DataContext context = new DataContext())
             {
                 context.Patients.Add(newPatient);
-                
+
                 immunizationRecordIDs.ForEach(x =>
                 {
                     // Create a new immunization record bassed on supplied immunizationRecordIDs
-                    ImmunizationRecord newImmunizationRecord = new ImmunizationRecord() { ImmunizationID = Int32.Parse(x), PatientID = newPatient.PatientID };
-                    context.ImmunizationRecords.Add(newImmunizationRecord);
+                    ImmunizationRecord newImmunizationRecord = new ImmunizationRecord() { ImmunizationID = Int32.Parse(x) };
+                    newPatient.ImmunizationRecords.Add(newImmunizationRecord);
                 });
 
                 // Return the object if successful.
