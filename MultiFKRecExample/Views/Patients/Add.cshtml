@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    if (ViewData["error"] != null)
+    {
+        <div class="alert alert-danger">@(ViewData["error"])</div>
+    }
+    else if (ViewData["success"] != null)
+    {
+        <div class="alert alert-success">@(ViewData["success"])</div>
+    }
+
+}
+
+@{
+    <form>
+    <label for="patientName">
+        Patient name:
+        <input type="text" name="patientName" id="patientName" placeholder="Patient's name" />
+    </label>
+    <h3>Immunizations</h3>
+        @{
+            if (ViewData["Immunizations"] != null)
+            {
+                foreach (Immunization immunization in (List<Immunization>)ViewData["Immunizations"])
+                {
+                <div class="form-group row">
+                    <label for=@("imm" + immunization.ImmunizationID)>
+                        @(immunization.ImmunizationDesc)
+                        <input type="checkbox" value=@(immunization.ImmunizationID) name=@("immunizationID") />
+                    </label>
+                </div>
+                }
+            }
+            <input type="submit" value="Add patient"/>
+
+        }
+    </form>
+}
